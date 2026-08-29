@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance Results</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Academic Performance Results</h1>
+    <div class="results">
+        <h2>Hello, {{ name }}!</h2>
+        <p><strong>Average grade:</strong> {{ "%.2f"|format(average) }}</p>
+        <p><strong>Highest grade:</strong> {{ "%.2f"|format(highest_grade) }}</p>
+        <p><strong>Lowest grade:</strong> {{ "%.2f"|format(lowest_grade) }}</p>
+        <p><strong>Strongest subject:</strong> {{ strongest_subject }}</p>
+        <p><strong>Weakest subject:</strong> {{ weakest_subject }}</p>
+        <h2>Overall Performance: {{ performance }}</h2>
+        {% if next_grade is not none %}
+            <p>
+                <strong>Next grade needed to reach your target:</strong>
+                {{ next_grade }}
+            </p>
+        {% else %}
+            <p>
+                <strong>Target grade is not achievable with one additional grade.</strong>
+            </p>
+        {% endif %}
+    </div>
+    <a href="/">Analyze Again</a>
+</div>
+</body>
+</html>
