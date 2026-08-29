@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Academic Performance Results</h1>
+        <div class="results">
+            <h2>Hello, {{ name }}!</h2>
+            <p>Average grade: {{ "%.2f"|format(average) }}</p>
+            <p>Highest grade: {{ "%.2f"|format(highest_grade) }}</p>
+            <p>Lowest grade: {{ "%.2f"|format(lowest_grade) }}</p>
+            <p>Strongest subject: {{ strongest_subject }}</p>
+            <p>Weakest subject: {{ weakest_subject }}</p>
+            <p>Desired grade: {{ "%.2f"|format(desired_grade) }}</p>
+            <h3>{{ target_status }}</h3>
+            <p>{{ target_message }}</p>
+            <h2>Overall Performance: {{ performance }}</h2>
+        </div>
+        <a href="/">Analyze Again</a>
+    </div>
+</body>
+</html>
