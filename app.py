@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os
 
 app = Flask(__name__)
 
@@ -22,10 +23,8 @@ def analyze():
     grades = {}
 
     for i in range(number_of_subjects):
-
         subject = request.form[f'subject_{i}']
         grade = float(request.form[f'grade_{i}'])
-
         grades[subject] = grade
 
     total = sum(grades.values())
@@ -53,25 +52,22 @@ def analyze():
     else:
         performance = 'Needs Improvement'
 
-    if average >= desired_grade:
-        target_status = 'Target achieved!'
-        next_grade = 0
-        target_message = 'You have already reached your target.'
+    # Calculate the grade needed on the next assessment
+    # to reach the desired average.
+    next_grade = None
 
-    else:
-        next_grade = (desired_grade * (len(grades) + 1)) - sum(grades.values())
+    required_grade = (
+        desired_grade * (number_of_subjects + 1)
+        - total
+    )
 
-    if next_grade <= maximum_grade:
-        target_status = 'Target not achieved yet.'
-        target_message = f'You need a grade of {next_grade:.2f} on your next result to reach your target.'
-    else:
-        target_status = 'Target not achievable with one more grade.'
-        target_message = 'Even the maximum possible grade would not be enough to reach your target with one more result.'
-        
-    if average >= desired_grade:
-        points_difference = average - desired_grade
-    else:
-        points_difference = desired_grade - average
+    # If the required grade is within the grading scale,
+    # it is possible to reach the target with one more grade.
+    if required_grade <= maximum_grade:
+        if required_grade <= minimum_grade:
+            next_grade = minimum_grade
+        else:
+            next_grade = round(required_grade, 2)
 
     return render_template(
         'results.html',
@@ -83,12 +79,10 @@ def analyze():
         weakest_subject=weakest_subject,
         performance=performance,
         desired_grade=desired_grade,
-        target_status=target_status,
-        points_difference=points_difference,
-        next_grade=next_grade,
-        target_message=target_message
+        next_grade=next_grade
     )
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
