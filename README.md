@@ -1,8 +1,16 @@
 # STUDENT PERFORMANCE ANALYZER
 
 A Flask-based web application designed to analyze student academic performance.
-This 
 
+This repository contains the web application I developed for my **Student Performance Analyzer** project, which is available as a separate repository on my GitHub profile.
+
+Using **Flask**, I managed to develop a web page that provides a graphical interface for the Student Performance Analyzer, allowing users to enter their information and use the analyzer directly through the website.
+
+## Live Website
+
+To access the deployed web application, copy and paste the link below into your browser:
+
+https://student-performance-analyzer-flask-web-cl5k.onrender.com/
 
 ## About the Project
 
@@ -54,6 +62,20 @@ student-performance-analyzer-flask/
 4. The application creates the required subject and grade fields.
 5. Flask processes the submitted information.
 6. The application calculates and displays the performance results.
+
+## How to Run?
+
+To run the program from the previous repository, save the Python file from this repository to a folder on your desktop.
+
+Open the terminal on your computer and navigate to the folder containing the file.
+
+## Then execute the following command:
+
+python spa.py
+
+## On Mac computers, you might need to use:
+
+python3 spa.py
 
 ## Purpose
 
