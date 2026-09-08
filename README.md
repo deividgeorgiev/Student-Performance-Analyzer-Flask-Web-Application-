@@ -8,7 +8,7 @@ Using **Flask**, I managed to develop a web page that provides a graphical inter
 
 ## Live Website
 
-To access the deployed web application, copy and paste the link below into your browser:
+To access the deployed web application, open the link below:
 
 https://student-performance-analyzer-flask-web-cl5k.onrender.com/
 
